@@ -98,6 +98,17 @@ int main()
             continue;
         }
 
+        if (strcmp(cmd, "rn") == 0) {
+            if ((arg = strtok(NULL, "\n")) == NULL) {
+                fprintf(stderr, "Not enough arguments\n");
+            }
+            else {
+                unsigned long number = arg[0] - '0';
+                txt = rn(txt, number);
+                show(txt);
+            }
+            continue;
+        }
 
           /* Если команда не известна */
           fprintf(stderr, "Unknown command: %s\n", cmd);

@@ -45,4 +45,10 @@ text move_cursor(text txt, int line, int pos);
  */
 text mwef(text txt);
 
+/**
+ * Удаление строки, заданной номером number
+ */
+
+text rn(text txt, unsigned long number);
+
 #endif
