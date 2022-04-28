@@ -21,6 +21,11 @@
 void show(text txt);
 
 /**
+ * Выводит первое слово из каждой строки в прямом порядке следования строк
+ */
+void showfirstwords(text txt);
+
+/**
  * Загружает содержимое указанного файла
  */
 void load(text txt, char *filename);
@@ -34,5 +39,10 @@ void save(text txt, char *filename);
  * Перемещение курсора
  */
 text move_cursor(text txt, int line, int pos);
+
+/**
+ * Перемещение курсора в конец текущего слова
+ */
+text mwef(text txt);
 
 #endif

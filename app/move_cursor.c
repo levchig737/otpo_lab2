@@ -12,7 +12,7 @@ text move_cursor(text txt, int line, int pos) {
     if (k == line) {
       txt->cursor->line = current;
       break;
-    }		
+    }
     current = current->next;
     k ++;
   }

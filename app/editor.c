@@ -22,7 +22,6 @@ int main()
     char *arg;
     char *arg2;
     
-    
     /* Создаем объект для представления текста */
     text txt = create_text();
 
@@ -62,6 +61,12 @@ int main()
             continue;
         }
 
+        /* Выводим текст */
+        if (strcmp(cmd, "showfirstwords") == 0) {
+            showfirstwords(txt);
+            continue;
+        }
+
         /* Сохраняем в файл */
         if (strcmp(cmd, "save") == 0) {
             if ((arg = strtok(NULL, " \n")) == NULL) {
@@ -73,24 +78,30 @@ int main()
             continue;
         }
 	
-	/* Перемещение курсора */
-	if (strcmp(cmd, "move") == 0) {
-	  if ((arg = strtok(NULL, " \n")) == NULL ||
-	      (arg2 = strtok(NULL, "\n")) == NULL) {
-	    fprintf(stderr, "Not enough arguments");
-	  }
-	  else {
-	    int line = arg[0] - '0';
-	    int pos = arg2[0] - '0';
-	    txt = move_cursor(txt, line, pos);
-	  }
-	  continue;
+        /* Перемещение курсора */
+        if (strcmp(cmd, "move") == 0) {
+        if ((arg = strtok(NULL, " \n")) == NULL ||
+            (arg2 = strtok(NULL, "\n")) == NULL) {
+            fprintf(stderr, "Not enough arguments");
         }
-	
-        
-        /* Если команда не известна */
-        fprintf(stderr, "Unknown command: %s\n", cmd);
-    }
-    
+        else {
+          int line = arg[0] - '0';
+          int pos = arg2[0] - '0';
+          txt = move_cursor(txt, line, pos);
+        }
+        continue;
+        }
+
+        /* Сохраняем в файл */
+        if (strcmp(cmd, "mwef") == 0) {
+            txt = mwef(txt);
+            continue;
+        }
+
+
+          /* Если команда не известна */
+          fprintf(stderr, "Unknown command: %s\n", cmd);
+        }
+
     return 0;
 }
