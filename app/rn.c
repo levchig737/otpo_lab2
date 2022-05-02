@@ -46,20 +46,24 @@ text rn(text txt, unsigned long number)
 
     if (number == 1) {
         free(current);
-//        txt->begin = current->next;
+        txt->begin = current->next;
+        txt->length = lenght - 1;
         return txt;
     }
+
     if (number == lenght) {
         free(current);
-//        current = current->previous;
-
+        current = current->previous;
+        current->next = NULL;
+        txt->length = lenght - 1;
         return txt;
     }
-    free(current);
-//    current = current->next;
-//    current->previous = prev_str;
-//    current = prev_str;
-//    current->next = next_str;
 
+    free(current);
+    current = current->next;
+    current->previous = prev_str;
+    current = current->previous;
+    current->next = next_str;
+    txt->length = lenght - 1;
     return txt;
 }

@@ -37,15 +37,15 @@ static void show_line(int index, char *contents, int cursor, void *data)
     
     if (cursor != -1) {
       for (int i = 0; i < (int) strlen(contents); i++) {
-	if (i == cursor)
-	  printf("|");
-	printf("%c", contents[i]);
+    if (i == cursor)
+      printf("|");
+    printf("%c", contents[i]);
       }
     }
     else {
       /* Выводим строку на экран */
       printf("%s", contents);
     }
-    
+
     
 }

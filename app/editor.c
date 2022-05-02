@@ -85,9 +85,10 @@ int main()
             fprintf(stderr, "Not enough arguments");
         }
         else {
-          int line = arg[0] - '0';
-          int pos = arg2[0] - '0';
-          txt = move_cursor(txt, line, pos);
+            int line = atoi(arg);
+            int pos = atoi(arg2);
+            txt = move_cursor(txt, line, pos);
+            show(txt);
         }
         continue;
         }
