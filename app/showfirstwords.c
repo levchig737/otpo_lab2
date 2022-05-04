@@ -30,9 +30,10 @@ static void show_word(int index, char *contents, int cursor, void *data)
 
     int i;
     int count = 0;
+    int len = strlen(contents);
 
     /* Цикл с поиском слова */
-    for (i=0; contents[i] != '\n'; i++) {
+    for (i=0; (contents[i] != '\n') && (i < len) ; i++) {
         /* Проверка на конец слова и кол-во выведенных символов */
         if ((contents[i] == ' ') && (count > 0))
             break;
@@ -48,9 +49,9 @@ static void show_word(int index, char *contents, int cursor, void *data)
         }
     }
 
-    if (i != 0)
-        printf("\n");
-    else
-        printf("Нет слов в строке");
+    if (count == 0) {
+        printf("No words");
+    }
 
+    printf("\n");
 }

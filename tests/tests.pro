@@ -14,7 +14,7 @@ QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
 QMAKE_CFLAGS += -fprofile-arcs -ftest-coverage
 LIBS += -lgcov
 
-DEFINES += INPUTDIR=\\\"$$PWD/input/\\\"
+DEFINES += INPUTDIR=\\\"$$PWD\\\"
 
 HEADERS += tests.h \
         ../app/common.h \
@@ -33,9 +33,11 @@ SOURCES += main.cpp \
     ../app/text/append_line.c \
     ../app/text/create_text.c \
     ../app/text/remove_all.c
-    
-INCLUDEPATH += ../app
 
 DISTFILES += \
-    input/input.txt \
-    input/no_text.txt \
+    input.txt \
+    no_text.txt \
+    test.txt \
+    no_words.txt \
+
+INCLUDEPATH += ../app
