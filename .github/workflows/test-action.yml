@@ -9,8 +9,8 @@ jobs:
       - run: git submodule update
       - run: pip install --user cpp-coveralls
       - run: sudo apt-get update -y && sudo apt-get install -y qt5-qmake qt5-default
-      - run: qmake
-      - run: make
+      - run: qmake qmake-otpo_lab2.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
+      - run: make -j6 in /home/lev/inf/otpo_lab2
       - run: ./tests/tests
 
       - name: Coveralls
