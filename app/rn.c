@@ -22,9 +22,10 @@ text rn(text txt, unsigned long number)
     }
 
     /* Проверка на число, чтобы оно было >0 и <= кол-во строк */
-
-    /* траблы с двойным free после повторного load */
-
+    if ((number < 1) || (number > lenght)) {
+        fprintf(stderr, "Incorrect data!\n");
+        return txt;
+    }
 
     unsigned long k = 1;
     node *current = txt->begin;
@@ -44,22 +45,37 @@ text rn(text txt, unsigned long number)
       k++;
     }
 
+    free(current);
+
+    if (txt->cursor->line == current) {
+        if (k != lenght) {
+            txt->cursor->line = next_str;
+        }
+        else {
+            txt->cursor->line = prev_str;
+        }
+    }
+
+    if ((number == 1) && (number == lenght)) {
+        txt->begin = NULL;
+        txt->end = NULL;
+        txt->cursor->line = NULL;
+        txt->length = 0;
+    }
+
     if (number == 1) {
-        free(current);
         txt->begin = current->next;
         txt->length = lenght - 1;
         return txt;
     }
 
     if (number == lenght) {
-        free(current);
         current = current->previous;
         current->next = NULL;
         txt->length = lenght - 1;
         return txt;
     }
 
-    free(current);
     current = current->next;
     current->previous = prev_str;
     current = current->previous;

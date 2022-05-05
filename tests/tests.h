@@ -330,5 +330,115 @@ TEST(mwef, suite4)
     remove_all(txt);
 }
 
+TEST(rn, suite1) {
+    text txt = create_text();
+    load(txt, filename);
+
+    move_cursor(txt, 3, 0);
+    node *current = txt->begin;
+
+    for (int i=0; i < 3; i++) {
+        current = current->next;
+    }
+
+    txt = rn(txt, 3);
+    testing::internal::CaptureStdout();
+    show(txt);
+    std::string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_EQ(output, "Hello world!\nSomething interesting in this file\n|Forth string for some test\nAnd 5 to something\n");
+    EXPECT_EQ(current, txt->cursor->line);
+
+    remove_all(txt);
+}
+
+TEST(rn, suite2) {
+    text txt = create_text();
+    load(txt, filename);
+
+    move_cursor(txt, 1, 0);
+    node *current = txt->begin;
+
+    for (int i=0; i < 1; i++) {
+        current = current->next;
+    }
+
+    txt = rn(txt, 1);
+    testing::internal::CaptureStdout();
+    show(txt);
+    std::string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_EQ(output, "|Something interesting in this file\nSo, let's go\nForth string for some test\nAnd 5 to something\n");
+    EXPECT_EQ(current, txt->cursor->line);
+
+    remove_all(txt);
+}
+
+TEST(rn, suite3) {
+    text txt = create_text();
+    load(txt, filename);
+
+    move_cursor(txt, 5, 0);
+    node *current = txt->begin;
+
+    for (int i=0; i < 3; i++) {
+        current = current->next;
+    }
+
+    txt = rn(txt, 5);
+    testing::internal::CaptureStdout();
+    show(txt);
+    std::string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_EQ(output, "Hello world!\nSomething interesting in this file\nSo, let's go\n|Forth string for some test\n");
+    EXPECT_EQ(current, txt->cursor->line);
+
+    remove_all(txt);
+}
+
+
+TEST(rn, suite4) {
+    text txt = create_text();
+    load(txt, "test.txt");
+
+    move_cursor(txt, 1, 0);
+    node *current = txt->begin;
+
+    for (int i=0; i < 1; i++) {
+        current = current->next;
+    }
+
+    txt = rn(txt, 1);
+    testing::internal::CaptureStderr();
+    show(txt);
+    std::string output = testing::internal::GetCapturedStderr();
+
+    EXPECT_EQ(output, "There are already no any lines in the text!\n");
+    EXPECT_EQ(current, txt->cursor->line);
+
+    remove_all(txt);
+}
+
+TEST(rn, suite5) {
+    text txt = create_text();
+    load(txt, filename);
+
+    // Для отрицательного значения
+    testing::internal::CaptureStderr();
+    txt = rn(txt, -1);
+    std::string output1 = testing::internal::GetCapturedStderr();
+
+    EXPECT_EQ(output1, "Incorrect data!\n");
+
+    // Для значения больше длины
+    testing::internal::CaptureStderr();
+    txt = rn(txt, 100);
+    std::string output2 = testing::internal::GetCapturedStderr();
+
+    EXPECT_EQ(output2, "Incorrect data!\n");
+
+    remove_all(txt);
+}
+
 
 #endif // EQTEST_H

@@ -106,7 +106,6 @@ int main()
             else {
                 unsigned long number = arg[0] - '0';
                 txt = rn(txt, number);
-                show(txt);
             }
             continue;
         }

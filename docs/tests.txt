@@ -130,3 +130,38 @@
 Ожидаемый результат: txt->cursor->position = 10, Номер строки курсора = 2
 
 
+Модуль rn
+Метод rn
+Тест suite1
+Цель: Проверить на нормальных давнных
+Тип: Позитивный
+Входные данные: input.txt; курсор на 3 строке, rn(3) 
+Ожидаемый результат: вывод show соответствует "Hello world!\nSomething interesting in this file\n|Forth string for some test\nAnd 5 to something\n", курсор на след. строке
+
+
+Тест suite2
+Цель: Проверить на удаление 1 строки
+Тип: Позитивный
+Входные данные: input.txt; курсор на 1 строке, rn(1) 
+Ожидаемый результат: вывод show соответствует "|Something interesting in this file\nSo, let's go\nForth string for some test\nAnd 5 to something\n", курсор на след. строке
+
+
+Тест suite3
+Цель: Проверить на удаление последней строки
+Тип: Позитивный
+Входные данные: input.txt; курсор на 5 строке, rn(5) 
+Ожидаемый результат: вывод show соответствует "Hello world!\nSomething interesting in this file\nSo, let's go\n|Forth string for some test\n", курсор на пред. строке
+
+
+Тест suite4
+Цель: Проверить на удаление единственной стркои файла
+Тип: Позитивный
+Входные данные: test.txt; курсор на 1 строке, rn(1) 
+Ожидаемый результат: вывод show соответствует "There are already no any lines in the text!\n", строка == NULL
+
+
+Тест suite5
+Цель: Проверить на при отрицательных данных и больше длины
+Тип: Негативный
+Входные данные: input.txt; rn(-1); rn(100)
+Ожидаемый результат: вывод show соответствует Вывод "Incorrect data!\n"
