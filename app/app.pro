@@ -4,8 +4,6 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 
-DEFINES += INPUTDIR=\\\"$$PWD/\\\"
-
 SOURCES += editor.c \
     load.c \
     move_cursor.c \
@@ -24,10 +22,8 @@ HEADERS += \
     text/_text.h \
     text/text.h
 
-DISTFILES += \
-    input/input.txt \
 
-QMAKE_CFLAGS += -Wall -Wextra -Werror
+QMAKE_CFLAGS += -Wall -Wextra #-Werror
 
 # gcov
 QMAKE_CFLAGS += -fprofile-arcs -ftest-coverage
