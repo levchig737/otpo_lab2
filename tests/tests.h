@@ -56,7 +56,7 @@ TEST(save, suite1)
     text txt = create_text();
     char *filename = INPUTDIR "/test.txt";
 
-    load(txt, "test.txt");
+    load(txt, filename);
     save(txt, "result.txt");
 
     std::ifstream f;
