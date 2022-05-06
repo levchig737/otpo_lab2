@@ -60,7 +60,7 @@ TEST(save, suite1)
     save(txt, "result.txt");
 
     std::ifstream f;
-    f.open("test.txt");
+    f.open(filename);
     std::ifstream cur_f;
     cur_f.open("result.txt");
     std::string s;
