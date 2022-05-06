@@ -5,20 +5,20 @@
 #include <string>
 #include <fstream>
 
-char* filename = "input.txt";
+
+//char* filename = "input.txt";
+
 
 extern "C"{
-#include "text/text.h"
 #include "text/_text.h"
 #include "common.h"
 }
 
 
-
-
 TEST(load, suite1)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
     load(txt, filename);
 
     std::ifstream f;
@@ -38,11 +38,12 @@ TEST(load, suite1)
 
 TEST(load, suite2) {
     text txt = create_text();
+    char *filename = INPUTDIR "/no_file.txt";
 
-    std::string output_text = "The file no_file.txt cannot be opened\n";
+    std::string output_text = "The file " INPUTDIR "/no_file.txt cannot be opened\n";
     testing::internal::CaptureStdout();
 
-    load(txt, "no_file.txt");
+    load(txt, filename);
 
     std::string text = testing::internal::GetCapturedStdout();
 
@@ -53,6 +54,8 @@ TEST(load, suite2) {
 TEST(save, suite1)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/test.txt";
+
     load(txt, "test.txt");
     save(txt, "result.txt");
 
@@ -87,6 +90,8 @@ TEST(show, suite1) {
 TEST(move_cursor, suite1)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     move_cursor(txt, 2, 3);
@@ -106,6 +111,8 @@ TEST(move_cursor, suite1)
 TEST(move_cursor, suite2)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     move_cursor(txt, -3, 0);
@@ -126,6 +133,8 @@ TEST(move_cursor, suite2)
 TEST(move_cursor, suite3)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     move_cursor(txt, 15, 0);
@@ -146,6 +155,8 @@ TEST(move_cursor, suite3)
 TEST(move_cursor, suite4)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     move_cursor(txt, 2, -5);
@@ -164,6 +175,8 @@ TEST(move_cursor, suite4)
 TEST(move_cursor, suite5)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     move_cursor(txt, 2, 30);
@@ -181,11 +194,12 @@ TEST(move_cursor, suite5)
 
 TEST(move_cursor, suite6) {
     text txt = create_text();
+    char *filename = INPUTDIR "/no_text.txt";
 
     std::string output_text = "There are already no any lines in the text!\n";
     testing::internal::CaptureStderr();
 
-    load(txt, "no_text.txt");
+    load(txt, filename);
     move_cursor(txt, 2, 3);
 
     std::string text = testing::internal::GetCapturedStderr();
@@ -196,7 +210,9 @@ TEST(move_cursor, suite6) {
 
 TEST(showfirstwords, suite1) {
     text txt = create_text();
-    load(txt, "no_words.txt");
+    char *filename = INPUTDIR "/no_words.txt";
+
+    load(txt, filename);
 
     std::string output_text = "No words\nNo words\n";
     testing::internal::CaptureStdout();
@@ -211,6 +227,8 @@ TEST(showfirstwords, suite1) {
 
 TEST(showfirstwords, suite2) {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     std::string output_text = "Hello\nSomething\nSo\nForth\nAnd\n";
@@ -226,7 +244,9 @@ TEST(showfirstwords, suite2) {
 
 TEST(showfirstwords, suite3) {
     text txt = create_text();
-    load(txt, "no_text.txt");
+    char *filename = INPUTDIR "/no_text.txt";
+
+    load(txt, filename);
 
     std::string output_text = "There are already no any lines in the text!\n";
     testing::internal::CaptureStderr();
@@ -242,6 +262,8 @@ TEST(showfirstwords, suite3) {
 TEST(mwef, suite1)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     node *current = txt->begin;
@@ -267,7 +289,9 @@ TEST(mwef, suite1)
 TEST(mwef, suite2)
 {
     text txt = create_text();
-    load(txt, "no_text.txt");
+    char *filename = INPUTDIR "/no_text.txt";
+
+    load(txt, filename);
 
     std::string output_text = "There are already no any lines in the text!\n";
     testing::internal::CaptureStderr();
@@ -284,6 +308,8 @@ TEST(mwef, suite2)
 TEST(mwef, suite3)
 {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     node *current = txt->begin;
@@ -308,7 +334,8 @@ TEST(mwef, suite3)
 TEST(mwef, suite4)
 {
     text txt = create_text();
-    load(txt, "no_words.txt");
+    char *filename = INPUTDIR "/no_words.txt";
+    load(txt, filename);
 
     node *current = txt->begin;
     move_cursor(txt, 1, 2);
@@ -332,6 +359,8 @@ TEST(mwef, suite4)
 
 TEST(rn, suite1) {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     move_cursor(txt, 3, 0);
@@ -354,6 +383,8 @@ TEST(rn, suite1) {
 
 TEST(rn, suite2) {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     move_cursor(txt, 1, 0);
@@ -376,6 +407,8 @@ TEST(rn, suite2) {
 
 TEST(rn, suite3) {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     move_cursor(txt, 5, 0);
@@ -399,7 +432,8 @@ TEST(rn, suite3) {
 
 TEST(rn, suite4) {
     text txt = create_text();
-    load(txt, "test.txt");
+    char *filename = INPUTDIR "/test.txt";
+    load(txt, filename);
 
     move_cursor(txt, 1, 0);
     node *current = txt->begin;
@@ -421,6 +455,8 @@ TEST(rn, suite4) {
 
 TEST(rn, suite5) {
     text txt = create_text();
+    char *filename = INPUTDIR "/input.txt";
+
     load(txt, filename);
 
     // Для отрицательного значения
