@@ -10,7 +10,7 @@
 
 
 extern "C"{
-#include "text/_text.h"
+#include "_text.h"
 #include "common.h"
 }
 

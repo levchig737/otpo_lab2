@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stddef.h>
 #include "common.h"
-#include "text/text.h"
-#include "text/_text.h"
+#include "text.h"
+#include "_text.h"
 
 text rn(text txt, unsigned long number)
 {

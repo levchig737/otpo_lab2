@@ -10,7 +10,7 @@
 #include <assert.h>
 #include "common.h"
 #include <string.h>
-#include "text/text.h"
+#include "text.h"
 
 static void show_line(int index, char *contents, int cursor, void *data);
 
