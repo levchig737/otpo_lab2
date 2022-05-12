@@ -56,7 +56,7 @@ text rn(text txt, unsigned long number)
     }
 
     if (number == 1) {
-        if (current->next != NULL) {
+        if ((current != NULL) && (current->next != NULL)) {
             txt->begin = current->next;
         }
         else {
@@ -67,7 +67,7 @@ text rn(text txt, unsigned long number)
     }
 
     if (number == lenght) {
-        if (current->previous != NULL) {
+        if ((current != NULL) && (current->previous != NULL)) {
             current = current->previous;
         }
         else {
@@ -79,10 +79,12 @@ text rn(text txt, unsigned long number)
         return txt;
     }
 
-    current = current->next;
-    current->previous = prev_str;
-    current = current->previous;
-    current->next = next_str;
-    txt->length = lenght - 1;
+    if (current != NULL) {
+        current = current->next;
+        current->previous = prev_str;
+        current = current->previous;
+        current->next = next_str;
+        txt->length = lenght - 1;
+    }
     return txt;
 }
