@@ -73,8 +73,9 @@ text rn(text txt, unsigned long number)
         else {
             current = NULL;
         }
+        if (current != NULL)
+            current->next = NULL;
 
-        current->next = NULL;
         txt->length = lenght - 1;
         return txt;
     }
