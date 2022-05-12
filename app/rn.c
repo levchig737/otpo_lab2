@@ -8,9 +8,6 @@
 
 text rn(text txt, unsigned long number)
 {
-    node *next_str;
-    node *prev_str;
-
     unsigned long lenght = txt->length;
 
 
@@ -22,6 +19,8 @@ text rn(text txt, unsigned long number)
 
     unsigned long k = 1;
     node *current = txt->begin;
+    node *next_str = current;
+    node *prev_str = current;
 
     /* Перемещение к строке number */
     while(current) {
@@ -57,13 +56,24 @@ text rn(text txt, unsigned long number)
     }
 
     if (number == 1) {
-        txt->begin = current->next;
+        if (current->next != NULL) {
+            txt->begin = current->next;
+        }
+        else {
+            txt->begin = NULL;
+        }
         txt->length = lenght - 1;
         return txt;
     }
 
     if (number == lenght) {
-        current = current->previous;
+        if (current->previous != NULL) {
+            current = current->previous;
+        }
+        else {
+            current = NULL;
+        }
+
         current->next = NULL;
         txt->length = lenght - 1;
         return txt;
