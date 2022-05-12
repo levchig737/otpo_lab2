@@ -38,7 +38,7 @@ text rn(text txt, unsigned long number)
       k++;
     }
 
-    free(current);
+//    free(current);
 
     if (txt->cursor->line == current) {
         if (k != lenght) {
