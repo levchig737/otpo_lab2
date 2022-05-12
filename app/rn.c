@@ -8,18 +8,11 @@
 
 text rn(text txt, unsigned long number)
 {
-    node *nd;
     node *next_str;
     node *prev_str;
-    UNUSED(next_str);
-    UNUSED(prev_str);
 
     unsigned long lenght = txt->length;
 
-    if ((nd = (node *) malloc(sizeof(node))) == NULL) {
-        fprintf(stderr, "Not enough memory!\n");
-        exit(EXIT_FAILURE);
-    }
 
     /* Проверка на число, чтобы оно было >0 и <= кол-во строк */
     if ((number < 1) || (number > lenght)) {
